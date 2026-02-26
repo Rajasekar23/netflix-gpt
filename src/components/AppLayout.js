@@ -6,7 +6,7 @@ const AppLayout = () => {
   return (
     <div>
         <Header> </Header>
-        <main className='bg-gradient-to-t from-black via-transparent to-black'>
+        <main >
             <Outlet></Outlet>
         </main>
 
