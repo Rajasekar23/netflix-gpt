@@ -15,15 +15,7 @@ function App() {
 
 
   const dispatch = useDispatch();
-  useEffect(() =>{
-    onAuthStateChanged(auth, () => {
-      if (auth.currentUser) {
-        const user = auth.currentUser;
-        const {displayName, email, uid } = user;
-        dispatch(addUser({displayName: displayName, email: email, uuid: uid, photoURL: user.photoURL}));
-      }
-    });
-  }, []);
+
 
 
   return (

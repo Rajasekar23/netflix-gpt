@@ -5,6 +5,7 @@ import { auth } from '../utils/firebase/FirebaseConfig';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addUser } from '../utils/store/LoginSlice';
+import { PHOTO_URL } from '../utils/const/Constants';
 
 
 const Login = () => {
@@ -12,15 +13,12 @@ const Login = () => {
   const [isSignIn, setSignIn] = useState(true);
   const email = useRef();
   const password = useRef();
+  const name = useRef();
 
   const [errorMessage, setErrorMessage] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-
-
-
 
   const handleSignIn = () => {
     const loginValidation = isValid(email.current.value, password.current.value);
@@ -31,11 +29,10 @@ const Login = () => {
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
           updateProfile(auth.currentUser, {
-            displayName: "Rajasekar", photoURL: "https://avatars.githubusercontent.com/u/28036556?v=4&size=64"
+            displayName: name.current.value, photoURL: PHOTO_URL
           }).then(() => {
             const { email, uid, displayName, photoURL } = auth.currentUser;
-            dispatch(addUser({displayName: displayName, email: email, uuid: uid, photoURL: 'https://avatars.githubusercontent.com/u/28036556?v=4&size=64'}));
-            navigate('/browse');
+            dispatch(addUser({displayName: displayName, email: email, uuid: uid, photoURL: PHOTO_URL}));
           }).catch((error) => {
             console.error("Profile update error:", error);
           });        
@@ -50,8 +47,6 @@ const Login = () => {
     }else{
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
-        navigate('/browse');        
-
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -76,6 +71,7 @@ const Login = () => {
         shadow-2xl
         flex flex-col gap-4
       "
+      ref={name}
       onSubmit={(e) => {
         e.preventDefault();
       }}

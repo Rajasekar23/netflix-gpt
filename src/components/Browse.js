@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useMemo } from 'react';
+import useNowPlayingMovies from '../utils/hooks/useNowPlayingMovies';
+import { useSelector } from 'react-redux';
+import MainMovieTitle from './MainMovieTitle';
+import MainMovieTrailer from './MainMovieTrailer';
 
 const Browse = () => {
+  useNowPlayingMovies();
+  const movies = useSelector(store=>store?.movies);
+  const nowPlayingMovies = movies?.now_playing_movies;
+  // const mainMovie =nowPlayingMovies?.[0];
+
+  const mainMovie = useMemo(() => {
+    if (!nowPlayingMovies?.length) return null;
+    return nowPlayingMovies[Math.floor(Math.random() * nowPlayingMovies.length)];
+  }, [nowPlayingMovies]);
+
+
+
+
   return (
-    <div className="min-h-screen w-full pt-20 ">
-        <p className="text-black">Browse!!</p>
+    <div className="bg-black">
+        <div className="relative w-full">
+          <MainMovieTrailer movie={mainMovie} />
+          <MainMovieTitle movie={mainMovie}/>
+        </div>
     </div>
   )
 }

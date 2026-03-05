@@ -1,13 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import LoginSliceReducer from './LoginSlice'
+import LoginSliceReducer from './LoginSlice';
+
+import MovieSliceReducer from './MovieSlice';
 
 
 
 const AppStore = configureStore({
 
     reducer: {
-        user : LoginSliceReducer
+        user : LoginSliceReducer,
+        movies : MovieSliceReducer
     }
 })
 
