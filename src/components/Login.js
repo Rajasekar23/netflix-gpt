@@ -37,6 +37,7 @@ const Login = () => {
           console.log(error);
           // const errorCode = error.code;
           // const errorMessage = error.message;
+          setErrorMessage(error.message);
           // ..
         });
     }else{
@@ -46,6 +47,7 @@ const Login = () => {
       .catch((error) => {
         // const errorCode = error.code;
         // const errorMessage = error.message;
+        setErrorMessage(error.message);
       });
     }
 
