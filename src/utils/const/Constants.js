@@ -7,3 +7,12 @@ export const TMDB_ACCESS_TOKEN  = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZGU3MjA2MGYy
 
 
 export const NOW_PLAYING_MOVIES = 'https://api.themoviedb.org/3/movie/now_playing';
+
+
+export const OPTIONS_API_DATA =  {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer '+TMDB_ACCESS_TOKEN
+    }
+  };
