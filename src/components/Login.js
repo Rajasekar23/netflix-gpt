@@ -13,11 +13,8 @@ const Login = () => {
   const email = useRef();
   const password = useRef();
   const name = useRef();
-
   const [errorMessage, setErrorMessage] = useState();
-
   const dispatch = useDispatch();
-
   const handleSignIn = () => {
     const loginValidation = isValid(email.current.value, password.current.value);
     if(loginValidation){
