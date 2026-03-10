@@ -7,7 +7,7 @@ export const isValid = (email, password) =>{
     if(!isValidEmail){
         return "Enter valid email id";
     }
-    const isValidPassword =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/ .test(password);
+    const isValidPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/.test(password);
     if(!isValidPassword){
         return "Enter valid password";
     }
