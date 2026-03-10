@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { TMDB_ACCESS_TOKEN, NOW_PLAYING_MOVIES, OPTIONS_API_DATA } from '../const/Constants';
+import { NOW_PLAYING_MOVIES, OPTIONS_API_DATA } from '../const/Constants';
 import { useDispatch } from "react-redux";
 import { addMovie } from "../store/MovieSlice";
 

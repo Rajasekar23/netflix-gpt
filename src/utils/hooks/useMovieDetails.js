@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { TMDB_ACCESS_TOKEN } from "../const/Constants";
 import { useDispatch } from "react-redux";
-import { mainMovie, trailerVideo } from "../store/MovieSlice";
+import { trailerVideo } from "../store/MovieSlice";
 
 
 const useMovieDetails = (movieId) =>{

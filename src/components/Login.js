@@ -3,7 +3,6 @@ import { isValid } from '../utils/validations/LoginFormValidation';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../utils/firebase/FirebaseConfig';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { addUser } from '../utils/store/LoginSlice';
 import { PHOTO_URL } from '../utils/const/Constants';
 
@@ -18,7 +17,6 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState();
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleSignIn = () => {
     const loginValidation = isValid(email.current.value, password.current.value);
@@ -31,7 +29,7 @@ const Login = () => {
           updateProfile(auth.currentUser, {
             displayName: name.current.value, photoURL: PHOTO_URL
           }).then(() => {
-            const { email, uid, displayName, photoURL } = auth.currentUser;
+            const { email, uid, displayName } = auth.currentUser;
             dispatch(addUser({displayName: displayName, email: email, uuid: uid, photoURL: PHOTO_URL}));
           }).catch((error) => {
             console.error("Profile update error:", error);
@@ -40,8 +38,8 @@ const Login = () => {
         })
         .catch((error) => {
           console.log(error);
-          const errorCode = error.code;
-          const errorMessage = error.message;
+          // const errorCode = error.code;
+          // const errorMessage = error.message;
           // ..
         });
     }else{
@@ -49,8 +47,8 @@ const Login = () => {
       .then((userCredential) => {
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
       });
     }
 
