@@ -4,13 +4,19 @@ import LoginSliceReducer from './LoginSlice';
 
 import MovieSliceReducer from './MovieSlice';
 
+import LanguageSliceReducer from './LanguageSlice';
+
+import GptSliceReducer from './GptSlice';
+
 
 
 const AppStore = configureStore({
 
     reducer: {
         user : LoginSliceReducer,
-        movies : MovieSliceReducer
+        movies : MovieSliceReducer,
+        language : LanguageSliceReducer,
+        gptSearch : GptSliceReducer
     }
 })
 

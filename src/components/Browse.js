@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import MainMovieTitle from './MainMovieTitle';
 import MainMovieTrailer from './MainMovieTrailer';
 import SecondSection from './SecondSection';
+import GptSearch from './GptSearch';
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -19,17 +20,22 @@ const Browse = () => {
   }, [nowPlayingMovies]);
 
 
+  const isActiveGptSearch = useSelector(store => store?.gptSearch?.toggle);
+
 
 
   return (
     <>
-    <div className="bg-black">
+        {isActiveGptSearch ? <GptSearch /> : <>     <div className="bg-black">
         <div className="relative w-full">
           <MainMovieTrailer movie={mainMovie} />
           <MainMovieTitle movie={mainMovie}/>
         </div>
     </div>
-      <SecondSection />
+      <SecondSection /> </>
+        }
+          
+
     
     </>
   )

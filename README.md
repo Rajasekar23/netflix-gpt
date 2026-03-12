@@ -29,5 +29,9 @@
             - Now Playing Movies
             - Popular Movies
 
+# Day - 5
+    - GPT Search
+    - Multi Language
+
 
 

@@ -16,3 +16,19 @@ export const OPTIONS_API_DATA =  {
       Authorization: 'Bearer '+TMDB_ACCESS_TOKEN
     }
   };
+
+
+  export const LANGUAGES = [
+    {
+      name: 'English',
+      value: 'en'
+    },
+    {
+      name: 'Hindi',
+      value: 'hindi'
+    },
+    {
+      name: "Spanish",
+      value: 'spanish'
+    }
+  ];

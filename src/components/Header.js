@@ -1,15 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {auth } from '../utils/firebase/FirebaseConfig';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from '../utils/store/LoginSlice';
+import { LANGUAGES } from '../utils/const/Constants';
+import { useLanguage } from '../utils/store/LanguageSlice';
+import { toggleGptSearch } from '../utils/store/GptSlice';
 
 const Header = () => {
 
   const user = useSelector(store=> store?.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const language = useRef();
 
   useEffect(() =>{
     onAuthStateChanged(auth, () => {
@@ -34,6 +39,14 @@ const Header = () => {
     });
   }
 
+  const handleLanguage = () => {
+    dispatch(useLanguage(language.current.value));
+  }
+
+  const handleGptSearch = () => {
+    dispatch(toggleGptSearch());
+  }
+
 
   return (
     <div className="absolute z-20 w-full flex justify-between items-center px-6 py-4 bg-gradient-to-b from-black">
@@ -44,7 +57,18 @@ const Header = () => {
       />
 
       {user && Object.keys(user).length > 0 && (
+
+
         <div className="flex items-center gap-4">
+
+          <select className='rounded-lg py-2 px-8 m-4' id="lang" ref={language} onChange={handleLanguage}>
+            { LANGUAGES.map(language => <option value={language.value} key={language.value}>{language.name}</option>) }
+          </select>
+          <button className='rounded-lg py-2 px-4 m-4 bg-purple-50' onClick={handleGptSearch}>
+            GPT Search
+          </button>
+
+
           <img 
             src={user?.photoURL} 
             alt="user-logo" 
